@@ -6,5 +6,5 @@
 [System Design] (/docs/design_system.md)
 
 ### Contributors
-Nalan Kurnaz - 300245521
-Myrtille 
+<p>Nalan Kurnaz - 300245521 </p>
+<p>Myrtille Murangamirwa- 08444640</p> 
