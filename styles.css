@@ -53,3 +53,31 @@ body {
   border-radius: 1rem;
   border: none;
 }
+
+#playAgainBtn {
+  padding: 1rem;
+  font-size: 1.1rem;
+  background-color: rgb(5, 255, 172);
+  color: #000000;
+  border-radius: 1rem;
+  border: none;
+}
+
+.modalContent {
+  height: 100vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+#winnerText {
+  font-size: 2rem;
+  font-family: "Permanent Marker", cursive;
+  color: #f8f8f8;
+}
+
+.hide {
+  display: none;
+}
