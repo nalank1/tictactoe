@@ -13,6 +13,8 @@ body {
   display: flex;
   justify-content: center;
   font-family: "Permanent Marker", cursive;
+  color: rgb(234, 245, 171);
+  font-size: large;
 }
 
 .gameContainer {
@@ -80,4 +82,13 @@ body {
 
 .hide {
   display: none;
+}
+
+#howtoplayBtn {
+  padding: 1rem;
+  font-size: 1.1rem;
+  background-color: rgb(5, 255, 172);
+  color: #000000;
+  border-radius: 1rem;
+  border: none;
 }
