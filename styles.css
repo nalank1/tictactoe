@@ -40,4 +40,16 @@ body {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   font-size: 8vmin;
   cursor: pointer;
+  font-family: "Permanent Marker", cursive;
+  background-color: #fbfbfb;
+  color: #000000;
+}
+
+#resetBtn {
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: rgb(255, 238, 5);
+  color: #000000;
+  border-radius: 1rem;
+  border: none;
 }
