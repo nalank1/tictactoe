@@ -3,7 +3,7 @@
 <p>This will be a submission for CSI3140 </p>
 
 ## For Detailed Information about the Game
-[System Design] (/docs/design_system.md)
+[System Design](/docs/design_system.md)
 
 ### Contributors
 <p>Nalan Kurnaz - 300245521 </p>
