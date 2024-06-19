@@ -1,4 +1,4 @@
-# tictactoe
+# Tic-Tac-Toe
 <p>This repository contains the implementation of tictactoe by using Javascript, HTML and CSS.</p>
 <p>This will be a submission for CSI3140 </p>
 
