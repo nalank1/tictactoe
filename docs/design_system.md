@@ -137,7 +137,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **How to Play Button**:
-  - **Description**: Styles for the how to play button
+  - **Description**: Styles for the how to play button. It specifies the rules of the game.
   - **Styles**:
     ```css
     #howtoplayBtn {
@@ -153,7 +153,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
 ## Miscellaneous
 
 - **Modal Content**:
-  - **Description**: Styles for the modal content.
+  - **Description**: Styles for the tile map of the game.
   - **Styles**:
     ```css
     .modalContent {
@@ -167,7 +167,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Winner Text**:
-  - **Description**: Styles for the winner text
+  - **Description**: Styles for the text for the winner of the game
   - **Styles**:
     ```css
     #winnerText {
@@ -178,7 +178,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Hide Class**:
-  - **Description**: Class for hiding elements
+  - **Description**: Class for hiding the winner of the game
   - **Styles**:
     ```css
     .hide {
