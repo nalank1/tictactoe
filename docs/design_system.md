@@ -183,6 +183,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
       display: none;
     }
     ```
+## Components
 
 ### Header 
 ![Header](assets/design_system/header.png)
