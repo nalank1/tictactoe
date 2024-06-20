@@ -1,7 +1,5 @@
 ## Tic Tac Toe Game Design
 
-## design_system.md
-
 This document outlines the design system for the TicTacToe game. They aim to create a visually appealing and user-friendly interface for the game
 
 ## Selector 
