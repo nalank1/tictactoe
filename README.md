@@ -43,11 +43,11 @@ cd tictactoe
 - **How to Play Button**: Click the "How to Play" button to view a brief overview of the game rules. This will open a section within the page explaining the basic rules of Tic Tac Toe.
 - **Leaderboard Section**: The game includes a leaderboard to display high scores. You can find this section at the bottom of the page. It lists player scores in descending order and provides a quick reference for top scores.
 
-![image](assets/design_system/leaderboard.png)
+![image](/docs/assets/design_system/leaderboard.PNG)
 
-![image](assets/design_system/firstOne.png)
+![image](/docs/assets/design_system/firstOne.png)
 
-![image](assets/design_system/secondOne.png)
+![image](/docs/assets/design_system/thirdOne.PNG)
 
 ## PHP Integration
 
@@ -89,9 +89,11 @@ The game uses PHP for server-side operations to handle game state and leaderboar
     - The leaderboard data is sent back to the client for display.
 
 
+## Acknowledgment
 
+We thank TAs and Professor Kalala for their assistance throughout this course and assignment.
 
-### Contributors
+## Contributors
 
-<p>Nalan Kurnaz - 300245521 </p>
-<p>Myrtille Murangamirwa - 08444640</p>
+Nalan Kurnaz - 300245521
+Myrtille Murangamirwa - 08444640
