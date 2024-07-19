@@ -1,11 +1,13 @@
 let cells = document.querySelectorAll(".cellButton");
 let resetButton = document.querySelector("#resetBtn");
-let newGateBtn = document.querySelector("#playAgainBtn");
+let playAgainBtn = document.querySelector("#playAgainBtn");
 let winnerText = document.querySelector("#winnerText");
-let winnercontainer = document.querySelector(".modalContent");
-let howtoPlay = document.querySelector("#howtoplayBtn");
+let winnerContainer = document.querySelector(".modalContent");
+let howToPlay = document.querySelector("#howtoplayBtn");
+let leaderboardList = document.querySelector("#leaderboardList");
 
-let turnO = true; //playerX, playerY, to interchange between players
+let turnO = true; // Player O starts the game
+let gameActive = true;
 
 const winning_conditions = [
   [0, 1, 2],
@@ -16,11 +18,12 @@ const winning_conditions = [
   [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6],
-]; //better way to organise for using 2d array
+];
 
-cells.forEach((cellButton) => {
+cells.forEach((cellButton, index) => {
   cellButton.addEventListener("click", () => {
-    console.log("The box was clicked");
+    if (!gameActive) return;
+
     if (turnO) {
       cellButton.innerHTML = "O";
       turnO = false;
@@ -31,64 +34,65 @@ cells.forEach((cellButton) => {
     cellButton.disabled = true;
 
     checkWinner();
+    sendMove(index, cellButton.innerHTML); // Send move to the server
   });
 });
 
 const showWinner = (winner) => {
   winnerText.innerText = `The winner is ${winner}`;
-  winnercontainer.classList.remove("hide");
-  disableCells();
+  winnerContainer.classList.remove("hide");
+  gameActive = false;
+  updateLeaderboard(winner); // Update leaderboard on the server
 };
 
 const disableCells = () => {
-  for (let cell of cells) {
+  cells.forEach((cell) => {
     cell.disabled = true;
-  }
+  });
 };
 
 const enableCells = () => {
-  for (let cell of cells) {
+  cells.forEach((cell) => {
     cell.disabled = false;
     cell.innerText = "";
-  }
+  });
 };
 
 const checkWinner = () => {
   let draw = true;
-  for (let pattern of winning_conditions) {
-    console.log(pattern[0], pattern[1], pattern[2]);
 
+  for (let pattern of winning_conditions) {
     let pos1 = cells[pattern[0]].innerText;
     let pos2 = cells[pattern[1]].innerText;
     let pos3 = cells[pattern[2]].innerText;
 
-    if (pos1 != "" && pos2 != "" && pos3 != "") {
-      if (pos1 === pos2 && pos2 === pos3) {
-        console.log("winner", pos1);
-        showWinner(pos1);
-        return;
-      }
-    } else {
+    if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
+      showWinner(pos1);
+      return;
+    }
+
+    if (pos1 === "" || pos2 === "" || pos3 === "") {
       draw = false;
     }
   }
 
   if (draw) {
-    console.log("draw");
     showDraw();
   }
 };
 
 const showDraw = () => {
   winnerText.innerText = `It's a draw`;
-  winnercontainer.classList.remove("hide");
-  disableCells();
+  winnerContainer.classList.remove("hide");
+  gameActive = false;
 };
 
 const resetGame = () => {
   turnO = true;
+  gameActive = true;
   enableCells();
-  winnercontainer.classList.add("hide");
+  winnerContainer.classList.add("hide");
+  resetGameOnServer(); // Reset game on the server
 };
 
 let rulesShown = false;
@@ -96,7 +100,7 @@ const toggleRules = () => {
   const rules = `
     1. The game is played on a grid that's 3 squares by 3 squares.
     2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares.
-    3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
+    3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner.
     4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
   `;
 
@@ -110,7 +114,7 @@ const toggleRules = () => {
   rulesShown = !rulesShown;
 };
 
-howtoPlay.addEventListener("click", () => {
+howToPlay.addEventListener("click", () => {
   toggleRules();
 });
 
@@ -121,3 +125,80 @@ playAgainBtn.addEventListener("click", () => {
 resetButton.addEventListener("click", () => {
   resetGame();
 });
+
+// AJAX functions to communicate with the server
+const sendMove = (index, player) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "leaderboard.php?action=move", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify({ index, player }));
+
+  /* xhr.onload = () => {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      console.log(response.message);
+    }
+  }; */
+};
+
+const resetGameOnServer = () => {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "leaderboard.php?action=reset", true);
+  xhr.send();
+
+  /*xhr.onload = () => {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      console.log(response.message);
+    }
+  }; */
+};
+
+const updateLeaderboard = (winner) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "leaderboard.php?action=updateLeaderboard", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify({ winner }));
+
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      displayLeaderboard(response.leaderboard);
+    }
+  };
+};
+
+const displayLeaderboard = (leaderboard) => {
+  leaderboardList.innerHTML = "";
+
+  for (const [player, score] of Object.entries(leaderboard)) {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${player}: ${score}`;
+    leaderboardList.appendChild(listItem);
+  }
+  /* leaderboard.forEach((entry, index) => {
+    const listItem = document.createElement("li");
+    listItem.innerText = `${index + 1}. ${entry.player} - ${entry.score} wins`;
+    leaderboardList.appendChild(listItem);
+  }); */
+};
+
+// Fetch leaderboard on page load
+const fetchLeaderboard = () => {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "server.php?action=getLeaderboard", true);
+  xhr.send();
+
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      displayLeaderboard(response.leaderboard);
+    }
+
+    else {
+      console.error("Error fetching leaderboard from the server.");
+    }
+  };
+};
+
+fetchLeaderboard();

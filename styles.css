@@ -92,3 +92,24 @@ body {
   border-radius: 1rem;
   border: none;
 }
+
+#rules{
+  text-align: center;
+  margin: auto;
+}
+
+#leaderboard{
+  margin-top:2rem;
+  text-align: center;
+}
+
+#leaderboard h2 {
+  font-size: 1.5rem;
+}
+
+#leaderboardList li{
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  list-style: none;
+  padding: 0;
+  color:#fbfbfb;}
