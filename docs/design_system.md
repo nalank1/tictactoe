@@ -2,9 +2,9 @@
 
 This document outlines the design system for the TicTacToe game. They aim to create a visually appealing and user-friendly interface for the game
 
-## Selector 
+## Selector
 
-- **selector:** * selector applies a margin of 0 and padding of 5px to all elements to ensure consistent spacing
+- **selector:** \* selector applies a margin of 0 and padding of 5px to all elements to ensure consistent spacing
 
 ## Fonts
 
@@ -14,27 +14,33 @@ This document outlines the design system for the TicTacToe game. They aim to cre
 
 ## Colors
 
-- **Primary Color**: 
+- **Primary Color**:
+
   - **Description**: For the background gradient
   - **Value**: `linear-gradient(90deg, rgb(17, 51, 161) 0%, rgb(136, 34, 195) 100%)`
 
 - **Text Color**:
+
   - **Description**: Primary color used for the text
   - **Value**: `rgb(234, 245, 171)`
 
 - **Cell Button Background Color**:
+
   - **Description**: Background color for the dice buttons
   - **Value**: `#fbfbfb`
 
 - **Cell Button Text Color**:
+
   - **Description**: Text color for the dice buttons
   - **Value**: `#000000`
 
 - **Reset Button Background Color**:
+
   - **Description**: Background color for the reset button
   - **Value**: `rgb(255, 238, 5)`
 
 - **Play Again Button Background Color**:
+
   - **Description**: Background color for the play again button
   - **Value**: `rgb(5, 255, 172)`
 
@@ -45,11 +51,16 @@ This document outlines the design system for the TicTacToe game. They aim to cre
 ## Layout
 
 - **Body Layout**:
+
   - **Description**: Styles for the body to center content
   - **Styles**:
     ```css
     body {
-      background: linear-gradient(90deg, rgb(17, 51, 161) 0%, rgb(136, 34, 195) 100%);
+      background: linear-gradient(
+        90deg,
+        rgb(17, 51, 161) 0%,
+        rgb(136, 34, 195) 100%
+      );
       text-align: center;
       display: flex;
       justify-content: center;
@@ -60,6 +71,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Game Container**:
+
   - **Description**: Container for the content of the game
   - **Styles**:
     ```css
@@ -89,6 +101,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
 ## Buttons
 
 - **Cell Button**:
+
   - **Description**: Styles for dice buttons
   - **Styles**:
     ```css
@@ -107,6 +120,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Reset Button**:
+
   - **Description**: Styles for the reset button
   - **Styles**:
     ```css
@@ -121,6 +135,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Play Again Button**:
+
   - **Description**: Styles for the play again button
   - **Styles**:
     ```css
@@ -151,6 +166,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
 ## Miscellaneous
 
 - **Modal Content**:
+
   - **Description**: Styles for the tile map of the game.
   - **Styles**:
     ```css
@@ -165,6 +181,7 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Winner Text**:
+
   - **Description**: Styles for the text for the winner of the game
   - **Styles**:
     ```css
@@ -176,26 +193,65 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 
 - **Hide Class**:
+
   - **Description**: Class for hiding the winner of the game
   - **Styles**:
     ```css
     .hide {
       display: none;
+    }F
+    ```
+
+- **Rules Section**:
+  - **Description**: Styles for the rules section
+  - **Styles**:
+    ```css
+    #rules {
+      text-align: center;
+      margin: auto;
     }
     ```
+- **Leaderboard Section**:
+
+  - **Description**: 
+  1. Styles for the leaderboard section
+  2. Displays the number of wins for each player.
+  3. Updates dynamically as players win games.
+  - **Styles**:
+
+    ```css
+    #leaderboard {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    #leaderboard h2 {
+      font-size: 1.5rem;
+    }
+
+    #leaderboardList li {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+      list-style: none;
+      padding: 0;
+      color: #fbfbfb;
+    }
+    ```
+
 ## Components
 
-### Header 
+### Header
+
 ![Header](assets/design_system/header.png)
 
-### Main 
+### Main
+
 ![Main](assets/design_system/main.png)
 
+### ModalContent
 
-### ModalContent 
 ![ModalContent](assets/design_system/modalContent.png)
 
+### Body
 
-### Body 
 ![Body](assets/design_system/body.png)
-
