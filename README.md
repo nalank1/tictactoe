@@ -1,5 +1,5 @@
 # Tic-Tac-Toe
-<p>This repository contains the implementation of tictactoe by using Javascript, HTML and CSS.</p>
+<p>This repository contains the implementation of tictactoe by using Javascript, HTML, CSS and PHP.</p>
 <p>This will be a submission for CSI3140 </p>
 
 ## For Detailed Information about the Game
