@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tic Tac Toe Game</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="modal" id="modal">
-      <div class="modalContent hide" id="modalContent">
-        <p id="winnerText">Winner</p>
-        <button id="playAgainBtn">Play Again</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="modal" id="modal">
+    <div class="modalContent hide" id="modalContent">
+      <p id="winnerText">Winner</p>
+      <button id="playAgainBtn">Play Again</button>
+    </div>
+  </div>
+  <main>
+    <h1>Tic Tac Toe</h1>
+    <div id="gameContainer">
+      <div class="cell">
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
+        <button class="cellButton"></button>
       </div>
-    <main>
-      <h1>Tic Tac Toe</h1>
-      <div id="gameContainer">
-        <div class="cell">
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-          <button class="cellButton"></button>
-        </div>
+    </div>
+    <button id="resetBtn">Reset Game</button>
+    <button id="howtoplayBtn">How to Play</button>
+    <div class="rules" id="rules"></div>
+    <div id="leaderboard">
+      <h2>Leaderboard</h2>
+      <ol id="leaderboardList"></ol>
+    </div>
+
+    <!-- Registration and Login Forms -->
+    <div class="auth-container">
+      <div id="registrationSection">
+        <h2>Register</h2>
+        <form id="registrationForm">
+          <label for="regUsername">Username:</label>
+          <input type="text" id="regUsername" name="regUsername" required />
+          <button type="submit">Register</button>
+        </form>
       </div>
-      <button id="resetBtn">Reset Game</button>
-      <button id="howtoplayBtn">How to Play</button>
-      <div class= "rules" id="rules"></div>
-      <div id="leaderboard">
-        <h2>Leaderboard</h2>
-        <ol id="leaderboardList"></ol>
+
+      <div id="loginSection">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <label for="loginUsername">Username:</label>
+          <input type="text" id="loginUsername" name="loginUsername" required />
+          <button type="submit">Login</button>
+        </form>
       </div>
-    </main>
-    
-    <script src = "game.js"></script>
-  </body>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
 </html>

@@ -66,7 +66,7 @@ const checkWinner = () => {
     let pos2 = cells[pattern[1]].innerText;
     let pos3 = cells[pattern[2]].innerText;
 
-    if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
+    if (pos1 !== "" && pos1 === pos2 && pos3 === pos2) {
       showWinner(pos1);
       return;
     }
@@ -133,12 +133,14 @@ const sendMove = (index, player) => {
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify({ index, player }));
 
-  /* xhr.onload = () => {
+  xhr.onload = () => {
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
       console.log(response.message);
+    } else {
+      console.error("Error recording move.");
     }
-  }; */
+  };
 };
 
 const resetGameOnServer = () => {
@@ -146,12 +148,14 @@ const resetGameOnServer = () => {
   xhr.open("POST", "leaderboard.php?action=reset", true);
   xhr.send();
 
-  /*xhr.onload = () => {
+  xhr.onload = () => {
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
       console.log(response.message);
+    } else {
+      console.error("Error resetting game.");
     }
-  }; */
+  };
 };
 
 const updateLeaderboard = (winner) => {
@@ -164,6 +168,8 @@ const updateLeaderboard = (winner) => {
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
       displayLeaderboard(response.leaderboard);
+    } else {
+      console.error("Error updating leaderboard.");
     }
   };
 };
@@ -171,34 +177,74 @@ const updateLeaderboard = (winner) => {
 const displayLeaderboard = (leaderboard) => {
   leaderboardList.innerHTML = "";
 
-  for (const [player, score] of Object.entries(leaderboard)) {
+  leaderboard.forEach((entry) => {
     const listItem = document.createElement('li');
-    listItem.textContent = `${player}: ${score}`;
+    listItem.textContent = `${entry.username}: ${entry.wins}`;
     leaderboardList.appendChild(listItem);
-  }
-  /* leaderboard.forEach((entry, index) => {
-    const listItem = document.createElement("li");
-    listItem.innerText = `${index + 1}. ${entry.player} - ${entry.score} wins`;
-    leaderboardList.appendChild(listItem);
-  }); */
+  });
 };
 
 // Fetch leaderboard on page load
 const fetchLeaderboard = () => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "server.php?action=getLeaderboard", true);
+  xhr.open("GET", "leaderboard.php?action=getLeaderboard", true);
   xhr.send();
 
   xhr.onload = () => {
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
       displayLeaderboard(response.leaderboard);
-    }
-
-    else {
-      console.error("Error fetching leaderboard from the server.");
+    } else {
+      console.error("Error fetching leaderboard.");
     }
   };
 };
 
 fetchLeaderboard();
+
+// AJAX function for registering a user
+const registerUser = (username, name, location, profilePicture) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "register.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      // Handle response (e.g., show success message or handle errors)
+    }
+  };
+  xhr.send(`username=${username}&name=${name}&location=${location}&profile_picture=${profilePicture}`);
+};
+
+// AJAX function for logging in a user
+const loginUser = (username) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "login.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      // Handle response (e.g., redirect to game page or show error message)
+    }
+  };
+  xhr.send(`username=${username}`);
+};
+
+// Event listener for registration form submission
+document.querySelector("#registerForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const username = event.target.username.value;
+  const name = event.target.name.value;
+  const location = event.target.location.value;
+  const profilePicture = event.target.profile_picture.value;
+
+  registerUser(username, name, location, profilePicture);
+});
+
+// Event listener for login form submission
+document.querySelector("#loginForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const username = event.target.username.value;
+
+  loginUser(username);
+});

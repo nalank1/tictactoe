@@ -1,25 +1,29 @@
 <?php
+// leaderboard.php
 session_start();
+include 'db.php';
 
 function resetGame() {
     $_SESSION['game'] = array_fill(0, 9, '');
 }
 
 function updateLeaderboard($winner) {
-    if (!isset($_SESSION['leaderboard'][$winner])) {
-        $_SESSION['leaderboard'][$winner] = 0;
+    global $pdo;
+
+    // Fetch user
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->execute([$winner]);
+    $user = $stmt->fetch();
+
+    if ($user) {
+        $stmt = $pdo->prepare("INSERT INTO leaderboard (username, wins) VALUES (?, 1)
+                              ON CONFLICT (username) DO UPDATE SET wins = leaderboard.wins + 1");
+        $stmt->execute([$winner]);
     }
-    $_SESSION['leaderboard'][$winner]++;
-    arsort($_SESSION['leaderboard']);
-    $_SESSION['leaderboard'] = array_slice($_SESSION['leaderboard'], 0, 10, true);
 }
 
 if (!isset($_SESSION['game'])) {
     resetGame();
-}
-
-if (!isset($_SESSION['leaderboard'])) {
-    $_SESSION['leaderboard'] = [];
 }
 
 $action = $_GET['action'] ?? '';
@@ -45,15 +49,22 @@ switch ($action) {
         $winner = $data['winner'];
 
         updateLeaderboard($winner);
-        echo json_encode(['leaderboard' => $_SESSION['leaderboard']]);
+        echo json_encode(['leaderboard' => getLeaderboard()]);
         break;
 
     case 'getLeaderboard':
-        echo json_encode(['leaderboard' => $_SESSION['leaderboard']]);
+        echo json_encode(['leaderboard' => getLeaderboard()]);
         break;
 
     default:
         echo json_encode(['message' => 'Invalid action']);
         break;
+}
+
+function getLeaderboard() {
+    global $pdo;
+
+    $stmt = $pdo->query("SELECT * FROM leaderboard ORDER BY wins DESC LIMIT 10");
+    return $stmt->fetchAll();
 }
 ?>
