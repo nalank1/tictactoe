@@ -44,8 +44,8 @@ h1 {
 }
 
 .cellButton {
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   border-radius: 10px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

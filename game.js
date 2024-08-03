@@ -8,6 +8,9 @@ let leaderboardList = document.querySelector("#leaderboardList");
 
 let turnO = true; // Player O starts the game
 let gameActive = true;
+let playerX = '';
+let playerO = '';
+let currentUser = '';
 
 const winning_conditions = [
   [0, 1, 2],
@@ -67,6 +70,7 @@ const checkWinner = () => {
     let pos3 = cells[pattern[2]].innerText;
 
     if (pos1 !== "" && pos1 === pos2 && pos3 === pos2) {
+      const winner = pos1 === 'X' ? playerX : playerO;
       showWinner(pos1);
       return;
     }
@@ -178,7 +182,7 @@ const displayLeaderboard = (leaderboard) => {
   leaderboardList.innerHTML = "";
 
   leaderboard.forEach((entry) => {
-    const listItem = document.createElement('li');
+    const listItem = document.createElement("li");
     listItem.textContent = `${entry.username}: ${entry.wins}`;
     leaderboardList.appendChild(listItem);
   });
@@ -213,7 +217,9 @@ const registerUser = (username, name, location, profilePicture) => {
       // Handle response (e.g., show success message or handle errors)
     }
   };
-  xhr.send(`username=${username}&name=${name}&location=${location}&profile_picture=${profilePicture}`);
+  xhr.send(
+    `username=${username}&name=${name}&location=${location}&profile_picture=${profilePicture}`
+  );
 };
 
 // AJAX function for logging in a user
