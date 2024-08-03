@@ -1,9 +1,9 @@
 <?php
 $host = 'localhost';
 $port = '3306';
-$db = 'your_database';
+$db = 'tictactoe';
 $user = 'your_username';
-$pass = 'your_password';
+$pass = 'Tokyo.677*';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -15,6 +15,15 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
+    echo "Database connection successful!";
+
+    // Test query to verify connection
+    $stmt = $pdo->query('SELECT 1');
+    $result = $stmt->fetch();
+    if ($result) {
+        echo "Test query successful!";
+    }
 } catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    echo "Database connection failed: " . $e->getMessage();
+    exit();
 }

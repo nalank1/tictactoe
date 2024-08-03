@@ -206,6 +206,26 @@ const fetchLeaderboard = () => {
 
 fetchLeaderboard();
 
+let registrationForm = document.querySelector("#registrationForm");
+let loginForm = document.querySelector("#loginForm");
+
+registrationForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let regUsername = document.querySelector("#regUsername").value;
+  // Call the registerUser function to handle registration
+  registerUser(regUsername, "John Doe", "New York", "profile.jpg");
+});
+
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let loginUsername = document.querySelector("#loginUsername").value;
+  // Process login (e.g., verify against database or local storage)
+  console.log("Logged in username:", loginUsername);
+  // Set the current user
+  currentUser = loginUsername;
+  alert("Login successful! Welcome back, " + currentUser);
+});
+
 // AJAX function for registering a user
 const registerUser = (username, name, location, profilePicture) => {
   const xhr = new XMLHttpRequest();
@@ -215,6 +235,10 @@ const registerUser = (username, name, location, profilePicture) => {
     if (xhr.status === 200) {
       console.log(xhr.responseText);
       // Handle response (e.g., show success message or handle errors)
+      alert("Registration successful! Welcome, " + username);
+    } else {
+      // Handle errors
+      alert("Registration failed. Please try again.");
     }
   };
   xhr.send(
@@ -231,26 +255,17 @@ const loginUser = (username) => {
     if (xhr.status === 200) {
       console.log(xhr.responseText);
       // Handle response (e.g., redirect to game page or show error message)
+      alert("Login successful! Welcome back, " + username);
+    } else {
+      // Handle errors
+      alert("Login failed. Please check your username and try again.");
     }
+  };
+  xhr.onerror = () => {
+    // Handle network errors
+    alert("Network error. Please check your connection and try again.");
   };
   xhr.send(`username=${username}`);
 };
 
-// Event listener for registration form submission
-document.querySelector("#registerForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const username = event.target.username.value;
-  const name = event.target.name.value;
-  const location = event.target.location.value;
-  const profilePicture = event.target.profile_picture.value;
 
-  registerUser(username, name, location, profilePicture);
-});
-
-// Event listener for login form submission
-document.querySelector("#loginForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const username = event.target.username.value;
-
-  loginUser(username);
-});
