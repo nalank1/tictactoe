@@ -47,7 +47,7 @@ cd tictactoe
 
 ![image](/docs/assets/design_system/firstOne.png)
 
-![image](/docs/assets/design_system/thirdOne.PNG)
+![image](/docs/assets/design_system/P4-1.PNG)
 
 ## PHP Integration
 
