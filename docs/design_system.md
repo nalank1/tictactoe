@@ -162,6 +162,47 @@ This document outlines the design system for the TicTacToe game. They aim to cre
       border: none;
     }
     ```
+- **Login Button**
+
+  - **Description**: Styles for the login button in the authentication container.
+  - **Styles**:
+
+  ```css
+  form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(5, 255, 172);
+    color: #000000;
+    transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+    background-color: rgb(0, 204, 153);
+  }
+  ```
+
+- **Register Button**
+
+  - **Description**: Styles for the register button in the authentication container.
+  - **Styles**:
+
+  ```css
+  form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(5, 255, 172);
+    color: #000000;
+    transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+    background-color: rgb(0, 204, 153);
+  }
+  ```
 
 ## Miscellaneous
 
@@ -213,10 +254,12 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     ```
 - **Leaderboard Section**:
 
-  - **Description**: 
+  - **Description**:
+
   1. Styles for the leaderboard section
   2. Displays the number of wins for each player.
   3. Updates dynamically as players win games.
+
   - **Styles**:
 
     ```css
@@ -238,6 +281,83 @@ This document outlines the design system for the TicTacToe game. They aim to cre
     }
     ```
 
+- **Authentication Container**:
+
+  - **Description**:
+
+  1. The Auth Container is a dedicated section within the Tic Tac Toe game interface that provides functionality for user authentication.
+  2. It includes both registration and login forms, enabling users to create an account or log in to an existing one.
+
+  - **Styles**:
+
+  ```css
+  .auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .auth-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: rgb(234, 245, 171);
+  }
+
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    background-color: #fbfbfb;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  }
+
+  .auth-container form label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #000000;
+  }
+
+  .auth-container form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+  }
+
+  .auth-container form button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: rgb(5, 255, 172);
+    color: #000000;
+    cursor: pointer;
+  }
+  ```
+- **Mobile Styles**:
+  - **Description**: Styles for mobile view, ensuring proper display on smaller screens.
+  - **Styles**:
+  ```css
+  @media (max-width: 600px) {
+    .auth-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    #registrationSection, #loginSection {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  ```
+
+
 ## Components
 
 ### Header
@@ -255,3 +375,4 @@ This document outlines the design system for the TicTacToe game. They aim to cre
 ### Body
 
 ![Body](assets/design_system/body.png)
+```

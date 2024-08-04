@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $name = $_POST['name'];
     $location = $_POST['location'];
-    // Omit handling of profile picture if not used
+    
 
     $stmt = $pdo->prepare("INSERT INTO users (username, name, location) VALUES (?, ?, ?)");
     try {

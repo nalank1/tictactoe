@@ -8,9 +8,9 @@ let leaderboardList = document.querySelector("#leaderboardList");
 
 let turnO = true; // Player O starts the game
 let gameActive = true;
-let playerX = '';
-let playerO = '';
-let currentUser = '';
+let playerX = "";
+let playerO = "";
+let currentUser = "";
 
 const winning_conditions = [
   [0, 1, 2],
@@ -27,6 +27,8 @@ cells.forEach((cellButton, index) => {
   cellButton.addEventListener("click", () => {
     if (!gameActive) return;
 
+    currentUser = turnO ? playerO : playerX;
+
     if (turnO) {
       cellButton.innerHTML = "O";
       turnO = false;
@@ -42,7 +44,7 @@ cells.forEach((cellButton, index) => {
 });
 
 const showWinner = (winner) => {
-  winnerText.innerText = `The winner is ${winner}`;
+  winnerText.innerText = `Winner: ${winner}`;
   winnerContainer.classList.remove("hide");
   gameActive = false;
   updateLeaderboard(winner); // Update leaderboard on the server
@@ -70,8 +72,8 @@ const checkWinner = () => {
     let pos3 = cells[pattern[2]].innerText;
 
     if (pos1 !== "" && pos1 === pos2 && pos3 === pos2) {
-      const winner = pos1 === 'X' ? playerX : playerO;
-      showWinner(pos1);
+      const winner = pos1 === "X" ? playerX : playerO;
+      showWinner(winner);
       return;
     }
 
@@ -242,7 +244,6 @@ const registerUser = (username, name, location) => {
   xhr.send(`username=${username}&name=${name}&location=${location}`);
 };
 
-
 // AJAX function for logging in a user
 const loginUser = (username) => {
   const xhr = new XMLHttpRequest();
@@ -264,5 +265,3 @@ const loginUser = (username) => {
   };
   xhr.send(`username=${username}`);
 };
-
-
