@@ -227,24 +227,21 @@ loginForm.addEventListener("submit", (event) => {
 });
 
 // AJAX function for registering a user
-const registerUser = (username, name, location, profilePicture) => {
+const registerUser = (username, name, location) => {
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "register.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onload = () => {
     if (xhr.status === 200) {
       console.log(xhr.responseText);
-      // Handle response (e.g., show success message or handle errors)
       alert("Registration successful! Welcome, " + username);
     } else {
-      // Handle errors
       alert("Registration failed. Please try again.");
     }
   };
-  xhr.send(
-    `username=${username}&name=${name}&location=${location}&profile_picture=${profilePicture}`
-  );
+  xhr.send(`username=${username}&name=${name}&location=${location}`);
 };
+
 
 // AJAX function for logging in a user
 const loginUser = (username) => {

@@ -7,12 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $name = $_POST['name'];
     $location = $_POST['location'];
-    $profile_picture = $_POST['profile_picture']; // This could be a URL or a file upload handling logic
+    // Omit handling of profile picture if not used
 
-    // Insert user into the database
-    $stmt = $pdo->prepare("INSERT INTO users (username, name, location, profile_picture) VALUES (?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO users (username, name, location) VALUES (?, ?, ?)");
     try {
-        $stmt->execute([$username, $name, $location, $profile_picture]);
+        $stmt->execute([$username, $name, $location]);
         echo 'User registered successfully!';
     } catch (PDOException $e) {
         if ($e->getCode() == '23505') { // Unique constraint violation code

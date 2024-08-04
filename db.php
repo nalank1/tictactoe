@@ -2,7 +2,7 @@
 $host = 'localhost';
 $port = '3306';
 $db = 'tictactoe';
-$user = 'your_username';
+$user = 'mysqluser';
 $pass = 'Tokyo.677*';
 $charset = 'utf8mb4';
 
@@ -15,15 +15,12 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    echo "Database connection successful!";
-
-    // Test query to verify connection
-    $stmt = $pdo->query('SELECT 1');
-    $result = $stmt->fetch();
-    if ($result) {
-        echo "Test query successful!";
-    }
 } catch (\PDOException $e) {
-    echo "Database connection failed: " . $e->getMessage();
+    // Log the error message to a file or monitoring system
+    error_log("Database connection failed: " . $e->getMessage());
+    
+    // Display a user-friendly message
+    echo "We are experiencing technical difficulties. Please try again later.";
     exit();
 }
+
