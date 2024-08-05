@@ -40,7 +40,7 @@ cd tictactoe
 - **Making Moves**: Click on any empty cell within the game grid to make your move. The game alternates between two players (traditionally X and O). Your selection will be indicated by the corresponding symbol.
 - **Winning the Game**: The game will automatically detect when a player has won or if the game ends in a draw. Winning lines will be highlighted to show which player has won.
 - **Viewing Results**: When a game is won or ends in a draw, a modal will appear displaying the result. You can view the winner's message and have the option to play again. 
--**Using the Reset Button**: If you want to start a new game without closing the browser, click the "Reset Game" button located below the game grid. This will clear the board and reset the game state.
+- **Using the Reset Button**: If you want to start a new game without closing the browser, click the "Reset Game" button located below the game grid. This will clear the board and reset the game state.
 - **How to Play Again**: After a game concludes, you can click the "Play Again" button in the modal that appears. This will reset the game and allow you to start a new game immediately.
 - **How to Play Button**: Click the "How to Play" button to view a brief overview of the game rules. This will open a section within the page explaining the basic rules of Tic Tac Toe.
 - **Leaderboard Section**: The game includes a leaderboard to display high scores. You can find this section at the bottom of the page. It lists player scores in descending order and provides a quick reference for top scores.
